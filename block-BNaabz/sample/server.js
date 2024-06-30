@@ -11,16 +11,9 @@ var mongoose = require('mongoose');
 //   });
 
 
-async function connectToDatabase() {
-  try {
-    await mongoose.connect('mongodb://localhost/sample');
-    console.log('Connected to database');
-  } catch (err) {
-    console.error('Error connecting to database:', err);
-  }
-}
+mongoose.connect('mongodb://127.0.0.1:27017/sample')
+  .then(() => console.log('Connected!'));
 
-connectToDatabase();
 
 
   var app = express();
