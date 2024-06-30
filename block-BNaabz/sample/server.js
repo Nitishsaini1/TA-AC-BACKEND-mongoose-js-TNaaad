@@ -1,23 +1,39 @@
-const express = require('express');
-const mongoose = require('mongoose');
+var express = require("express");
+var logger = require('morgan');
+var mongoose = require('mongoose');
 
-const app = express();
+//connect to database
 
-app.use(express.json());
+// mongoose.connect("mongodb.//localhost/sample",
+//   {useNewUrlParser:true, useUnifiedTopology:true},
+//   (err)=>{
+//     console.log(err?err:"Connected to database");
+//   });
 
-mongoose.connect('mongodb://localhost:27017/mydatabase', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('Connected to MongoDB');
-}).catch((err) => {
-  console.error('Error connecting to MongoDB', err);
-});
 
-app.get('/', (req, res) => {
-  res.send('Hello, MongoDB!');
-});
+async function connectToDatabase() {
+  try {
+    await mongoose.connect('mongodb://localhost/sample');
+    console.log('Connected to database');
+  } catch (err) {
+    console.error('Error connecting to database:', err);
+  }
+}
 
-app.listen(3000, () => {
-  console.log(`Server is running on port 3k`);
-});
+connectToDatabase();
+
+
+  var app = express();
+  app.use(logger('dev'));
+  app.get ('/', (req,res)=>{
+    res.send('Welcome')
+  })
+  app.get ('/users', (req,res)=>{
+    res.send('User Page')
+  });
+  app.use((req,res,next)=>{
+    res.send('Page not found');
+  });
+  app.listen(3000,()=>{
+    console.log("Server is listening on port 3k")
+  })
