@@ -2,16 +2,10 @@ var mongoose = require('mongoose')
 var Schema = mongoose.schema;
 
 var userSchema = new Schema({
-    name:String,
-      age:Number,
-      sports:[string],
+      name:String,
+      
+      email:{type:string, lowercase:true},
+      age:{type:Number, default:0},
+      favorites:[string],
       marks:[Number]
 });
-
-var fieldSchema = new Schema({
-    village :String,
- city:   String,
- stat:    String,
- pin :   Number,
- user: Schema.Types.objectId
-})
