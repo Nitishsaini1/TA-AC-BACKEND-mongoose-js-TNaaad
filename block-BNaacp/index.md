@@ -4,7 +4,7 @@ writeCode
 
 - create an express application named sample
 - connect to mongodb database using mongoose.connect() in `app.js`
-- create a user schema in models directory
+`- create a user schema in models directory
   - name
   - email
   - sports
@@ -12,7 +12,7 @@ writeCode
 - export it from model
 - import it into app.js
 - on POST request on `/users` route create a user
-
+`
 Q. Insert a user into database using Model.create() OR model.save() function
 
 - insert user `{name: '', email: '', sports: ['cricket', 'khokho']}`
